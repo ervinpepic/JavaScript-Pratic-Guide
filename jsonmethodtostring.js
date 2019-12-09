@@ -100,3 +100,46 @@ let seminar = {
 
 console.log(JSON.stringify(seminar));
 
+let userData = '{ "name": "Ervin", "age": 26, "isAdmin": false, "friends": [0,1,2,3] }';
+
+let user1 = JSON.parse(userData);
+console.log(user1.friends[1]);
+
+
+let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+let seminar1 = JSON.parse(str, function (kljuc, vrijednost){
+    return(kljuc == 'date') ? new Date(vrijednost) : vrijednost;
+}); 
+
+console.log(`eee`,seminar1.date.getFullYear());
+
+
+let user2 = {
+    name: "John Smith",
+    age: 35
+  };
+let korisnik4 = JSON.stringify(user2)
+
+console.log(korisnik4);
+console.log(JSON.parse(korisnik4));
+
+
+let room2 = {
+    number: 23
+  };
+  
+  let meetup2 = {
+    title: "Conference",
+    occupiedBy: [{name: "John"}, {name: "Alice"}],
+    place: room
+  };
+  
+  // circular references
+  room.occupiedBy = meetup2;
+  meetup2.self = meetup2;
+  
+  console.log(JSON.stringify(meetup2, function replacer(kljuc, vrijednost){
+      return (kljuc != "" && vrijednost == meetup2) ? undefined : vrijednost;
+  }));
+
