@@ -38,3 +38,70 @@ console.log('recursive solution' ,pow1(2,4));
 console.log('recursive conditional opoerator solution' ,pow2(2,2));
 console.log('recursive conditional opoerator solution' ,pow2(2,3));
 console.log('recursive conditional opoerator solution' ,pow2(2,4));
+
+
+let company = {
+    sales: [
+        {
+            name: 'John',
+            salary: 1000
+        }, 
+        {
+            name: 'Alice',
+            salary: 600,
+        }
+],
+    development: {
+        sites: [
+            {
+                name: 'Peter',
+                salary: 2000
+
+            },
+            {
+                name: 'Alex',
+                salary: 1800
+            }
+    ],
+        internals: [
+            {
+                name: 'Jack',
+                salary: 1300
+            }
+        ]
+    },
+};
+
+function sumSalaries(departmani) {
+    if (Array.isArray(departmani)) {
+        return departmani.reduce
+        ((
+            prethodnaVrijednost, trenutnaVrijednost) => prethodnaVrijednost + trenutnaVrijednost.salary, 0
+        )
+    } else {
+        let sum = 0;
+        for (let subDep of Object.values(departmani)) {
+            sum = sum + sumSalaries(subDep);
+        }
+        return sum;
+    }
+}
+
+console.log(sumSalaries(company));
+
+let list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+list = {next: 'New value', next: list};
+console.log(list);
