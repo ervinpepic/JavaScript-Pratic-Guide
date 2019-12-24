@@ -82,7 +82,7 @@ function f() {
     let vrijednost = Math.random();
  
     function g() {
-        debugger;
+        // debugger;
     }
     return g;
 }
@@ -96,10 +96,92 @@ function a() {
     let value = 'neka vrijednost';
 
     function b() {
-        debugger;
+        // debugger;
     }
     return b();
 }
 
-let k = a();
-k();
+// let k = a();
+// k();
+
+function sum(a) {
+
+    return function (b) {
+        return a + b;
+    }
+}
+
+
+function inBetween(a, b) {
+    return function(x) {
+        return x >= a && x <= b;
+    }
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7]
+
+console.log(arr.filter(inBetween(3,6)));
+
+function inArray(arr) {
+    return function(x) {
+        return arr.includes(x);
+    }
+}
+
+let arr1 = [1, 2, 3, 4, 5, 6, 7]
+
+console.log(arr.filter(inArray([1,2,3,4])));
+
+
+let users = [
+    {
+        name: 'Ervin', 
+        age: 26,
+        surname: 'Pepic'
+    },
+
+    {
+        name: 'Emel',
+        age: 17,
+        surname: 'Pepic'
+    },
+
+    {
+        name: 'Erna',
+        age: 56,
+        surname: 'Bojcetic'
+    }
+];
+
+function sortByField(fieldForSort) {
+    return (a, b) => a[fieldForSort] > b[fieldForSort] ? 1 : -1;
+};
+
+users.sort(sortByField('name'));
+users.forEach(user => {
+    console.log(user.name);
+});
+
+users.sort(sortByField('age'))
+users.forEach(user => {
+    console.log(user.name);
+});
+
+function makeArmy() {
+    let shooters = [];
+
+    let i = 0;
+    while(i < 10) {
+        let j = i;
+        let shooter = function() {
+            console.log(j);
+        };
+        shooters.push(shooter);
+        i++
+    }
+    return shooters;
+}
+
+let army = makeArmy();
+console.log(army[5]());
+army[20];
