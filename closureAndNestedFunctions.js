@@ -66,3 +66,40 @@ console.log(counter() );
 console.log(counter() );
 console.log(counter() );
 console.log(counter() );
+
+//to isolate variable from global scope when JS is used for browser use code blocks
+
+{
+    let message = 'Hello';
+    console.log( message);
+}
+// console.log(message);//not defined out of scope 
+
+
+//v8 JS engine optimization vs theory
+
+function f() {
+    let vrijednost = Math.random();
+ 
+    function g() {
+        debugger;
+    }
+    return g;
+}
+
+let g = f();
+g();
+
+let value = 'surprise';
+
+function a() {
+    let value = 'neka vrijednost';
+
+    function b() {
+        debugger;
+    }
+    return b();
+}
+
+let k = a();
+k();
