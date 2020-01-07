@@ -1,94 +1,94 @@
-// //losing this when we use it out of object scope
-// //example
+//losing this when we use it out of object scope
+//example
 
-// let user = {
-//     fullName: 'Ervin Pepic',
-//     sayHi() {
-//         console.log(`Hello ${this.fullName}!`);
-//     }
-// };
+let user = {
+    fullName: 'Ervin Pepic',
+    sayHi() {
+        console.log(`Hello ${this.fullName}!`);
+    }
+};
 
-// setTimeout(user.sayHi, 1000);
+setTimeout(user.sayHi, 1000);
 
-// //resolve this problem
+//resolve this problem
 
-// setTimeout(function(){
-//     user.sayHi();
-// }, 1000);
+setTimeout(function(){
+    user.sayHi();
+}, 1000);
 
-// //or shorter way
+//or shorter way
 
-// setTimeout(() => user.sayHi(), 1000);
+setTimeout(() => user.sayHi(), 1000);
 
-// // Looks fine, but a slight vulnerability appears in our code structure.
+// Looks fine, but a slight vulnerability appears in our code structure.
 
-// // What if before setTimeout triggers (there’s one second delay!) user changes value? 
-// // Then, suddenly, it will call the wrong object!
+// What if before setTimeout triggers (there’s one second delay!) user changes value? 
+// Then, suddenly, it will call the wrong object!
 
-// //Solution: Bind
+//Solution: Bind
 
-// let user1 = {
-//     firstName: 'ervin'
-// };
+let user1 = {
+    firstName: 'ervin'
+};
 
-// function func() {
-//     console.log(this.firstName);
-// }
+function func() {
+    console.log(this.firstName);
+}
 
-// let funcUser = func.bind(user1);
-// funcUser();
+let funcUser = func.bind(user1);
+funcUser();
 
-// function f(phrase) {
-//     console.log(phrase + ', ' + this.firstName);
-// }
-// let funcUser2 = f.bind(user1);
-// funcUser2('Hello');
-
-
-// let korisnik = {
-//     firstName: 'Ervine',
-//     sahHi() {
-//         console.log(`Hello, ${this.firstName}`);
-//     }
-// };
-
-// let pozdrav = korisnik.sahHi.bind(korisnik);
-
-// pozdrav();
-// setTimeout(pozdrav, 10000);
+function f(phrase) {
+    console.log(phrase + ', ' + this.firstName);
+}
+let funcUser2 = f.bind(user1);
+funcUser2('Hello');
 
 
-// let person = {
-//     firstName: 'Korisnik',
-//     govor(fraza) {
-//         console.log(`${fraza}, ${this.firstName}`);
-//     }
-// };
+let korisnik = {
+    firstName: 'Ervine',
+    sahHi() {
+        console.log(`Hello, ${this.firstName}`);
+    }
+};
 
-// let nekaRijec = person.govor.bind(person);
-// nekaRijec('Postovanje');
-// nekaRijec('Cao');
+let pozdrav = korisnik.sahHi.bind(korisnik);
 
-
-// //Partial function bind examples
-
-// function multiply(a, b) {
-//     return a * b;
-// }
-
-// let double = multiply.bind(null, 2);
-
-// console.log(double(5));
-
-// // going partial without context
-// function parcijalno(imeFunkcije, ...granicaArgumenata) {
-//     return function(...args) {
-//         return imeFunkcije.call(this, ...granicaArgumenata, ...args);
-//     }
-// }
+pozdrav();
+setTimeout(pozdrav, 10000);
 
 
-///first task
+let person = {
+    firstName: 'Korisnik',
+    govor(fraza) {
+        console.log(`${fraza}, ${this.firstName}`);
+    }
+};
+
+let nekaRijec = person.govor.bind(person);
+nekaRijec('Postovanje');
+nekaRijec('Cao');
+
+
+//Partial function bind examples
+
+function multiply(a, b) {
+    return a * b;
+}
+
+let double = multiply.bind(null, 2);
+
+console.log(double(5));
+
+// going partial without context
+function parcijalno(imeFunkcije, ...granicaArgumenata) {
+    return function(...args) {
+        return imeFunkcije.call(this, ...granicaArgumenata, ...args);
+    }
+}
+
+
+/first task
 
 function f() {
     console.log(this);
