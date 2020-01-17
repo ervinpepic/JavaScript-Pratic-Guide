@@ -80,3 +80,21 @@ Object.defineProperty(korisnik3, "toString",{
 });
 
 for (let kljuc in korisnik3) console.log(kljuc);
+
+
+// “Non-configurable” doesn’t mean “non-writable”
+// Notable exception: a value of non-configurable, but writable property can be changed.
+
+// The idea of configurable: false is to prevent changes to property flags and its deletion, not changes to its value.
+
+
+let korinsik5 = {};
+
+Object.defineProperty(korinsik5, 'ime', {
+    value: "Pepic",
+    configurable: false,
+    writable: false
+});
+
+// won't be able to change korisnik5.ime or its flags
+
